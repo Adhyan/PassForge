@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PassForge — Secure Password Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <header>
+    <div class="logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">PassForge</span>
+    </div>
+    <p class="tagline">Cryptographically secure passwords, forged instantly.</p>
+  </header>
+
+  <main>
+    <!-- Generator Panel -->
+    <section class="card" id="generator">
+      <h2 class="card-title"><span class="step">01</span> Configure</h2>
+
+      <div class="field">
+        <label for="length">Password Length <span class="value-badge" id="length-display">16</span></label>
+        <input type="range" id="length" min="4" max="128" value="16" />
+        <div class="range-labels"><span>4</span><span>128</span></div>
+      </div>
+
+      <div class="toggles">
+        <label class="toggle">
+          <input type="checkbox" id="uppercase" checked />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">Uppercase <code>A–Z</code></span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="lowercase" checked />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">Lowercase <code>a–z</code></span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="digits" checked />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">Numbers <code>0–9</code></span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="symbols" checked />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">Symbols <code>!@#…</code></span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="exclude_ambiguous" />
+          <span class="toggle-track"></span>
+          <span class="toggle-label">Exclude Ambiguous <code>0Ol1I</code></span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="count">Generate <span class="value-badge" id="count-display">1</span> password(s)</label>
+        <input type="range" id="count" min="1" max="10" value="1" />
+        <div class="range-labels"><span>1</span><span>10</span></div>
+      </div>
+
+      <button class="btn-generate" id="generateBtn">
+        <span class="btn-icon">⚡</span> Generate Password
+      </button>
+    </section>
+
+    <!-- Results Panel -->
+    <section class="card" id="results" style="display:none">
+      <h2 class="card-title"><span class="step">02</span> Your Passwords</h2>
+      <div id="password-list"></div>
+    </section>
+
+    <!-- Analyzer Panel -->
+    <section class="card" id="analyzer">
+      <h2 class="card-title"><span class="step">03</span> Analyze a Password</h2>
+      <div class="analyze-input-wrap">
+        <input type="text" id="analyze-input" placeholder="Paste any password to analyze…" autocomplete="off" />
+        <button class="btn-analyze" id="analyzeBtn">Analyze</button>
+      </div>
+      <div id="analysis-result" class="analysis-result" style="display:none"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PassForge uses Python's <code>secrets</code> module — cryptographically secure randomness.</p>
+  </footer>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
